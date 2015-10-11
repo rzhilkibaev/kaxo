@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+BINPATH=$(dirname $0)
+python3 "$BINPATH/../kaxo/kaxo.py" $@
+
