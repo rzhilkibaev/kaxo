@@ -18,6 +18,8 @@ class UI():
         self.loop.run()
 
     def on_input(self, key):
+        if key in ("t", "T"):
+            tabs.contents.append((urwid.Text("tab3"), tabs.options(width_type="pack")))
         if key in ('q', 'Q'):
             raise urwid.ExitMainLoop()
 
@@ -31,7 +33,7 @@ class WorkspaceFrame(urwid.Frame):
 
 class TabFrame(urwid.Frame):
     def __init__(self):
-        urwid.Frame.__init__(self, NavigatorFrame())
+        urwid.Frame.__init__(self, NavigatorFrame(), header=tabs)
 
 class NavigatorFrame(urwid.Frame):
     def __init__(self):
@@ -40,6 +42,8 @@ class NavigatorFrame(urwid.Frame):
 class TabularNavigatorWidget(urwid.ListBox):
     def __init__(self):
         urwid.ListBox.__init__(self, [urwid.Text("file1"), urwid.Text("file2")])
+
+tabs = urwid.Columns([("pack", urwid.Text("tab1")), ("pack", urwid.Text("tab2"))], dividechars=1)
 
 if __name__ == "__main__":
     main()
