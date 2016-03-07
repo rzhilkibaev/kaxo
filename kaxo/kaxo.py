@@ -2,14 +2,7 @@ import urwid
 import random
 
 def main():
-    FileManager().run()
-
-class FileManager():
-    def __init__(self):
-        self.ui = UI()
-
-    def run(self):
-        self.ui.run()
+    UI().run()
 
 class UI():
     def __init__(self):
@@ -83,6 +76,7 @@ class TabularNavigatorWidget(urwid.ListBox):
         urwid.ListBox.__init__(self, [urwid.Text(text)])
         
 class TabSet(urwid.Columns):
+    """Strip of tabs"""
     def __init__(self):
         urwid.Columns.__init__(self, [("pack", urwid.AttrMap(urwid.Text("|"), "tab_inactive"))])
         
@@ -98,6 +92,6 @@ class TabSet(urwid.Columns):
             attr_map.set_attr_map({None: "tab_inactive"})
         (attr_map, _) = self.contents[index * 2 + 1]
         attr_map.set_attr_map({None: "tab_active"})
-        
+    
 if __name__ == "__main__":
     main()
